@@ -1,0 +1,6 @@
+move all JS and styles to main.js and styles.js
+make carousel work as a class instead of identifying by identifying
+apply carousel class to items on home page
+move everything into assets folder
+create assets subdirectory
+

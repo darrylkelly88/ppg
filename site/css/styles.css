@@ -1,0 +1,194 @@
+html, body {
+    height: 100%;
+}
+
+.petweb-nav{
+    background: #3e543f;
+
+}
+
+.petweb-hero{
+   background-image: url(../dogs-hero-pic.jpg); 
+   background-position: center;
+   background-size: cover;
+   color: white;
+   
+}
+
+.petweb-nav-links {
+    color: white;
+}
+
+.petweb-nav-links:hover {
+    color: #ffc55e;
+}
+
+
+.petweb-hero h1 {
+    font-weight: bolder;
+}
+
+.btn-cta {
+    background-color: #d49d43; /* Baby blue background */
+    color: #ffffff; /* White text */
+    border: 2px solid #d49d43; /* Baby blue border */
+    /* Add padding and other styling as needed */
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-cta:hover {
+    color: #ffc55e; /* Hover text color */
+    border: 2px solid #ffc55e; /* Hover border color */
+    /* Add padding and other styling as needed */
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+/* Secondary CTA button with inverse color scheme */
+.btn-cta-outline {
+    color: #d49d43; /* Secondary text color */
+    border: 2px solid #d49d43; /* Secondary border color */
+    /* Add padding and other styling as needed */
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-cta-outline:hover {
+    background-color: #ffc55e;
+    color: white; /* Hover text color */
+    border: 2px solid #ffc55e; /* Hover border color */
+    /* Add padding and other styling as needed */
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-cta-secondary {
+    color: white;
+    border: 2px solid #3e543f;
+    background-color: #3e543f;
+
+}
+
+.btn-cta-secondary:hover {
+    color: #3e543f;
+    border: 2px solid #3e543f;
+}
+
+
+.btn-cta-secondary-outline {
+    color: #3e543f;
+    border: 2px solid #3e543f;
+}
+
+.btn-cta-secondary-outline:hover {
+    color: white;
+    border: 2px solid #3e543f;
+    background-color: #3e543f;
+}
+
+.btn-nav-bar{
+    color: #ffc55e; /* Secondary text color */
+    border: 2px solid #ffc55e; /* Secondary border color */
+    /* Add padding and other styling as needed */
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    max-height: 50px;
+    white-space: nowrap;       /* Prevent text from wrapping */
+    overflow: hidden;          /* Hide overflowing content */
+    text-overflow: ellipsis;  
+}
+
+.btn-nav-bar:hover {
+    background-color: #d49d43;
+    color: white; /* Hover text color */
+    border: 2px solid #d49d43; /* Hover border color */
+}
+
+.nav-pills .nav-link {
+    color: #3e543f;
+    border: 2px solid #3e543f;
+
+}
+
+.nav-pills .nav-link:hover {
+    color: #d49d43;
+    border: 2px solid #d49d43;
+
+}
+
+.nav-pills .nav-link.active {
+    background-color: #3e543f;
+    color: white; /* Optionally, change the text color */
+    border: 2px solid #3e543f;
+}
+
+.card-footer {
+    background-color: transparent;
+}
+
+
+/* related articles carousel styles */
+@media (max-width: 768px) {
+    .rcc-4 .carousel-inner .carousel-item > div {
+      display: none;
+    }
+    .rcc-4 .carousel-inner .carousel-item > div:first-child {
+      display: block;
+    }
+  }
+  
+  .rcc-4 .carousel-inner .carousel-item.active,
+  .rcc-4 .carousel-inner .carousel-item-start,
+  .rcc-4 .carousel-inner .carousel-item-next,
+  .rcc-4 .carousel-inner .carousel-item-prev {
+    display: flex;
+    transition-duration: 1s;
+  }
+  
+  /* display 4 */
+  @media (min-width: 768px) {
+    .rcc-4 .carousel-inner .carousel-item-right.active,
+    .rcc-4 .carousel-inner .carousel-item-next,
+    .rcc-4 .carousel-item-next:not(.carousel-item-start) {
+      transform: translateX(25%) !important;
+    }
+  
+    .rcc-4 .carousel-inner .carousel-item-left.active,
+    .rcc-4 .carousel-item-prev:not(.carousel-item-end),
+    .rcc-4 .active.carousel-item-start,
+    .rcc-4 .carousel-item-prev:not(.carousel-item-end) {
+      transform: translateX(-25%) !important;
+    }
+  
+    .rcc-4 .carousel-item-next.carousel-item-start,
+    .rcc-4 .active.carousel-item-end {
+      transform: translateX(0) !important;
+    }
+  
+    .rcc-4 .carousel-inner .carousel-item-prev,
+    .rcc-4 .carousel-item-prev:not(.carousel-item-end) {
+      transform: translateX(-25%) !important;
+    }
+  }
+  
+  
+  
+    .top-picks-card-img-top {
+    width: 100%; /* Ensure the image takes up the full width of its container */
+    height: 200px; /* Set a fixed height for the image */
+    object-fit: cover; /* Ensure the image covers the specified dimensions while maintaining its aspect ratio */
+    }
+ 
+      
+    .card-img-200px {
+        width: 100%; /* Ensure the image takes up the full width of its container */
+        height: 200px; /* Set a fixed height for the image */
+        object-fit: cover; /* Ensure the image covers the specified dimensions while maintaining its aspect ratio */
+        }
