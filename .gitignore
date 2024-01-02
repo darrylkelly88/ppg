@@ -1,0 +1,7 @@
+**/letsencrypt
+
+**/data/access
+**/data/custom_ssl
+**/data/logs
+**/data/letsencrypt-acme-challenge
+**/data/keys.json
