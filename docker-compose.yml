@@ -1,7 +1,11 @@
 version: '3.1'
 
 services:
-
+  
+  # NGINX Proxy Manager
+  # Proxies between various containers
+  #
+  # https://github.com/NginxProxyManager/nginx-proxy-manager
   nginx-proxy-manager:
     container_name: nginx
     image: 'jc21/nginx-proxy-manager:latest'
@@ -31,7 +35,6 @@ services:
       - npm_db_network
       - web_network
 
-
   npm_db:
     container_name: npm_db_container
     image: 'jc21/mariadb-aria:latest'
@@ -46,7 +49,10 @@ services:
     networks:
       - npm_db_network
 
-
+  # Wordpress Site
+  # Hosts the website
+  #
+  # https://hub.docker.com/_/wordpress
   wordpress:
     depends_on:
       - wp_db
@@ -80,11 +86,64 @@ services:
     networks:
       - wp_db_network
 
+  
+  
+  # Mailservers
+  # 
+  # Documentation: https://docker-mailserver.github.io/docker-mailserver/latest/
+  # https://github.com/docker-mailserver/docker-mailserver/
+  mailserver:
+    image: ghcr.io/docker-mailserver/docker-mailserver:latest
+    container_name: mailserver
+    # Provide the FQDN of your mail server here (Your DNS MX record should point to this value)
+    # In godaddy the name needs to be @ while the value is the defined subdomain. This means when the main domain has a look up it will return the subdomain as the mail server.
+    hostname: mail.perfectpetguides.co.uk
+    env_file: mailserver.env
+    # More information about the mail-server ports:
+    # https://docker-mailserver.github.io/docker-mailserver/latest/config/security/understanding-the-ports/
+    # To avoid conflicts with yaml base-60 float, DO NOT remove the quotation marks.
+    ports:
+      - "25:25"    # SMTP  (explicit TLS => STARTTLS, Authentication is DISABLED => use port 465/587 instead)
+      - "143:143"  # IMAP4 (explicit TLS => STARTTLS)
+      - "465:465"  # ESMTP (implicit TLS)
+      - "587:587"  # ESMTP (explicit TLS => STARTTLS)
+      - "993:993"  # IMAP4 (implicit TLS)
+    volumes:
+      - mail-data:/var/mail/
+      - mail-state:/var/mail-state/
+      - mail-logs:/var/log/mail/
+      - mail-config:/tmp/docker-mailserver/
+      #Certs for mail server are managed by Nginx Proxy Manager. In this config it is the 6th cert it manages.
+      - ./letsencrypt/live/npm-6/cert.pem:/etc/letsencrypt/live/mail.perfectpetguides.co.uk/mail.perfectpetguides.co.uk-cert.pem
+      - ./letsencrypt/live/npm-6/privkey.pem:/etc/letsencrypt/live/mail.perfectpetguides.co.uk/mail.perfectpetguides.co.uk-key.pem
+      #Enable container to read localtime
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    stop_grace_period: 1m
+    # Uncomment if using `ENABLE_FAIL2BAN=1`:
+    # cap_add:
+    #   - NET_ADMIN
+    healthcheck:
+      test: "ss --listening --tcp | grep -P 'LISTEN.+:smtp' || exit 1"
+      timeout: 3s
+      retries: 0
+
+
+#Volumes & Netorks to create
+#
+#
+#
 
 volumes:
   wordpress:
   wp_db:
   npm_db:
+  mail-data:
+  mail-state:
+  mail-logs:
+  mail-config:
+
+
 
 networks:
   web_network:

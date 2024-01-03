@@ -5,3 +5,5 @@
 **/data/logs
 **/data/letsencrypt-acme-challenge
 **/data/keys.json
+
+*.pem
