@@ -5,6 +5,7 @@ services:
   # NGINX Proxy Manager
   # Proxies between various containers
   #
+  #
   # https://github.com/NginxProxyManager/nginx-proxy-manager
   nginx-proxy-manager:
     container_name: nginx
@@ -34,6 +35,13 @@ services:
     networks:
       - npm_db_network
       - web_network
+      - marketing_mautic_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "https://perfectpetguides.co.uk/health"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
   npm_db:
     container_name: npm_db_container
@@ -48,9 +56,18 @@ services:
       - npm_db:/var/lib/mysql
     networks:
       - npm_db_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "--user=root", "--password=npm", "ping", "--silent"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+
 
   # Wordpress Site
   # Hosts the website
+  #
   #
   # https://hub.docker.com/_/wordpress
   wordpress:
@@ -70,7 +87,12 @@ services:
     networks:
       - web_network
       - wp_db_network
-
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
   wp_db:
     container_name: wp_db_container
@@ -85,6 +107,13 @@ services:
       - wp_db:/var/lib/mysql
     networks:
       - wp_db_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "--user=wpuser", "--password=wppass", "ping", "--silent"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
 
   
   
@@ -127,6 +156,59 @@ services:
       test: "ss --listening --tcp | grep -P 'LISTEN.+:smtp' || exit 1"
       timeout: 3s
       retries: 0
+    networks:
+      - marketing_mautic_network
+
+
+
+  # Marketing Automation
+  #
+  #
+  #
+  # https://hub.docker.com/r/mautic/mautic/
+
+  marketing_mautic_db:
+    image: powertic/percona-docker
+    container_name: marketing_mautic_db
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+    volumes:
+      - marketing_mautic_db:/var/lib/mysql
+    restart: always
+    networks:
+      - marketing_mautic_db_network
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --sql-mode=""
+    healthcheck:
+      test: ["CMD", "mysqladmin", "--user=root", "--password=mypassword", "ping", "--silent"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    
+
+  marketing_mautic:
+    container_name: marketing_mautic
+    depends_on: 
+      - marketing_mautic_db
+    image: mautic/mautic:v4-apache
+    volumes:
+      - marketing_mautic_data:/var/www/html
+    environment:
+      - MAUTIC_DB_HOST=marketing_mautic_db
+      - MAUTIC_DB_USER=root
+      - MAUTIC_DB_PASSWORD=mypassword
+      - MAUTIC_DB_NAME=mautic4
+    restart: always
+    networks:
+      - marketing_mautic_network
+      - marketing_mautic_db_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
 
 
 #Volumes & Netorks to create
@@ -142,6 +224,8 @@ volumes:
   mail-state:
   mail-logs:
   mail-config:
+  marketing_mautic_db:
+  marketing_mautic_data:
 
 
 
@@ -149,3 +233,5 @@ networks:
   web_network:
   wp_db_network:
   npm_db_network:
+  marketing_mautic_network:
+  marketing_mautic_db_network:
