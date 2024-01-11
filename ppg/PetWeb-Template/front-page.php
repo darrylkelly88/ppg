@@ -21,9 +21,9 @@ get_header()
                 <img src="<?php echo get_template_directory_uri().'/assets/images/ty.jpg' ?>" class="img-fluid rounded-3 placeholder-glow" loading="lazy">
             </div>
             <div class="col-12 col-sm-12 col-md-8 col-lg-8 order-1 order-sm-1 order-md-2 order-lg-2">
-                <h1>Welcome  to Perfect Pet Care</h1>
+                <h1>Welcome  to Perfect Pet Guides</h1>
                 <p>
-                    Perfect Pet Care is your go-to resource for all things pet-related, designed to guide you through the diverse aspects of pet care. Whether you're exploring nutrition, sustainability, pet tech, health & wellbeing, insurance, or seasonal awareness, we've got you covered.
+                    Perfect Pet Guides is your go-to resource for all things pet-related, designed to guide you through the diverse aspects of pet care. Whether you're exploring nutrition, sustainability, pet tech, health & wellbeing, insurance, or seasonal awareness, we've got you covered.
                     <br><br>
                     Join us on this exciting journey of pet care, where we combine our passion for animals with professional expertise to empower you as a pet owner. Here's to creating a world of love, health, and happiness for your beloved pets!
                     <br><br>

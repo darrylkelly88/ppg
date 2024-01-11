@@ -70,7 +70,7 @@ html, body {
 }
 
 .btn-cta-outline:hover {
-    background-color: #ffc55e;
+    background-color: #d49d43;
     color: white; /* Hover text color */
     border: 2px solid #ffc55e; /* Hover border color */
     /* Add padding and other styling as needed */

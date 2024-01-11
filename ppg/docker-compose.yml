@@ -36,6 +36,7 @@ services:
       - npm_db_network
       - web_network
       - marketing_mautic_network
+      - matomo_network
     healthcheck:
       test: ["CMD", "curl", "-f", "https://perfectpetguides.co.uk/health"]
       interval: 1m30s
@@ -167,6 +168,30 @@ services:
   #
   # https://hub.docker.com/r/mautic/mautic/
 
+  marketing_mautic:
+    container_name: marketing_mautic
+    depends_on: 
+      - marketing_mautic_db
+    image: mautic/mautic:v4-apache
+    volumes:
+      - marketing_mautic_data:/var/www/html
+    environment:
+      - MAUTIC_DB_HOST=marketing_mautic_db
+      - MAUTIC_DB_USER=root
+      - MAUTIC_DB_PASSWORD=mypassword
+      - MAUTIC_DB_NAME=mautic4
+    restart: always
+    # To connect to mailserver they must be on the same network. Mailserver must also have the permit_docker env variable set.
+    networks:
+      - marketing_mautic_network
+      - marketing_mautic_db_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
   marketing_mautic_db:
     image: powertic/percona-docker
     container_name: marketing_mautic_db
@@ -186,29 +211,74 @@ services:
       start_period: 30s
     
 
-  marketing_mautic:
-    container_name: marketing_mautic
-    depends_on: 
-      - marketing_mautic_db
-    image: mautic/mautic:v4-apache
-    volumes:
-      - marketing_mautic_data:/var/www/html
-    environment:
-      - MAUTIC_DB_HOST=marketing_mautic_db
-      - MAUTIC_DB_USER=root
-      - MAUTIC_DB_PASSWORD=mypassword
-      - MAUTIC_DB_NAME=mautic4
+# Analytics & Tracking
+#
+#
+#
+# https://github.com/matomo-org/docker/blob/master/.examples/apache/docker-compose.yml
+
+  matomo_db:
+    container_name: analytics_matomo_db
+    image: mariadb:10.11
+    command: --max-allowed-packet=64MB
     restart: always
+    volumes:
+      - matomo_db:/var/lib/mysql:Z
+    environment:
+        - MYSQL_ROOT_PASSWORD=matomo
+        - MARIADB_DISABLE_UPGRADE_BACKUP=1
+        - MYSQL_PASSWORD=matomo
+        - MYSQL_DATABASE=matomo
+        - MYSQL_USER=matomo
+        - MATOMO_DATABASE_ADAPTER=mysql
+        - MATOMO_DATABASE_TABLES_PREFIX=matomo_
+        - MATOMO_DATABASE_USERNAME=matomo
+        - MATOMO_DATABASE_PASSWORD=
+        - MATOMO_DATABASE_DBNAME=matomo
+        - MARIADB_AUTO_UPGRADE=1
+        - MARIADB_INITDB_SKIP_TZINFO=1
     networks:
-      - marketing_mautic_network
-      - marketing_mautic_db_network
+      - matomo_db_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "--user=root", "--password=matomo", "ping", "--silent"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+
+
+  matomo:
+    container_name: analytics_matomo
+    image: matomo
+    restart: always
+    volumes:
+#     - ./config:/var/www/html/config:z
+#     - ./logs:/var/www/html/logs:z
+      - matomo:/var/www/html:z
+    environment:
+      - MATOMO_DATABASE_HOST=matomo_db
+      - MYSQL_ROOT_PASSWORD=matomo
+      - MARIADB_DISABLE_UPGRADE_BACKUP=1
+      - MYSQL_PASSWORD=matomo
+      - MYSQL_DATABASE=matomo
+      - MYSQL_USER=matomo
+      - MATOMO_DATABASE_ADAPTER=mysql
+      - MATOMO_DATABASE_TABLES_PREFIX=matomo_
+      - MATOMO_DATABASE_USERNAME=matomo
+      - MATOMO_DATABASE_PASSWORD=
+      - MATOMO_DATABASE_DBNAME=matomo
+      - MARIADB_AUTO_UPGRADE=1
+      - MARIADB_INITDB_SKIP_TZINFO=1
+    networks:
+      - matomo_network
+      - matomo_db_network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
       interval: 1m30s
       timeout: 30s
       retries: 5
       start_period: 30s
-
 
 
 #Volumes & Netorks to create
@@ -226,6 +296,8 @@ volumes:
   mail-config:
   marketing_mautic_db:
   marketing_mautic_data:
+  matomo:
+  matomo_db:
 
 
 
@@ -235,3 +307,5 @@ networks:
   npm_db_network:
   marketing_mautic_network:
   marketing_mautic_db_network:
+  matomo_network:
+  matomo_db_network:
