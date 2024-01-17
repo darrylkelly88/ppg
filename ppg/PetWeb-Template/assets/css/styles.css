@@ -219,3 +219,79 @@ html, body {
     .rm-padding-right .wp-block-media-text__content {
         padding-right: 0px !important;
     }
+
+/* makes all items in a column sticky - should be applied as additional class to column */
+    .sticky-column {
+        height: 100%;
+        position: sticky;
+        top: 100px;
+    }
+
+/* makes a single item sticky - should be applied to a single item */
+    .sticky-item {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 60px;
+        z-index: 100;
+    }
+
+
+/* highlight a quote */
+    .quote-container {
+        background-color: rgb(238, 237, 237) ; /* Background color */
+        color: #3e543f ; /* Text color */
+        border-left: 6px solid #3e543f; /* Left border color */
+        padding: 20px; /* Add some padding for spacing */
+        margin: 20px 0; /* Adjust margin for spacing between quotes */
+        font-size: 16px; /* Adjust font size as needed */
+        font-style: italic; /* Italicize the text */
+        position: relative;
+        text-align: center;
+      }
+        /* Style for the quotation mark on the top left */
+    .quote-container::before {
+        content: "“"; /* Unicode for a left double quotation mark */
+        position: absolute;
+        top: -10px;
+        left: 0;
+        font-size: 48px; /* Adjust the size of the quotation mark */
+        color: #3e543f; /* Color of the quotation mark */
+        font-family: Times New Roman;
+    }
+    .quote-container::after {
+        content: "”"; /* Unicode for a left double quotation mark */
+        position: absolute;
+        bottom: -20px;
+        right: 10px;
+        font-size: 48px; /* Adjust the size of the quotation mark */
+        color: #3e543f; /* Color of the quotation mark */
+        font-family: Times New Roman;
+    }
+
+
+/* calculator selectors   */
+    #results {
+        margin-top: 20px;
+    }
+     
+    .question {
+        margin-bottom: 20px;
+    }
+    
+    /* Container holding the image */
+    .calc-image-container {
+        width: 100%; /* or a fixed width, e.g., 300px */
+        height: 300px; /* Adjust this height as needed */
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        justify-content: center; /* Center image horizontally */
+        align-items: center; /* Center image vertically */
+    }
+    
+    /* Style for the image */
+    .calc-img-fluid {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Ensures image covers the container */
+    }
