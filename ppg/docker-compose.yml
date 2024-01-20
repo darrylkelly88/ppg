@@ -89,6 +89,7 @@ services:
     networks:
       - web_network
       - wp_db_network
+      - food_calc_network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
       interval: 1m30s
@@ -284,6 +285,7 @@ services:
 
 
 
+
 # Pet Food Calculator
 #
 #
@@ -298,7 +300,7 @@ services:
     networks:
       - food_calc_db_network
     volumes:
-      - ./data:/data/db
+      - food_calc_db:/data/db
 
 
   food_calc:
@@ -307,12 +309,10 @@ services:
     networks:
       - food_calc_db_network
       - food_calc_network
-    volumes:
-      - ./app.js:/app/app.js
     environment:
     - MONGO_USER=root
     - MONGO_PASSWORD=example
-    - MONGO_HOST=testdb
+    - MONGO_HOST=food_calc_db
     - MONGO_PORT=27017
     - MONGO_DB_NAME=petweb
     - MONGO_COLLECTION_NAME=foods
@@ -323,12 +323,13 @@ services:
     container_name: "mongo-gui"
     image: ugleiton/mongo-gui
     restart: always
-    ports:
-      - "4321:4321"
     networks:
-      - mongodb
+      - food_calc_db_network
+      - web_network
     environment:
-      - MONGO_URL=mongodb://root:example@testdb:27017
+      - MONGO_URL=mongodb://root:example@food_calc_db:27017
+
+
 
 
 
@@ -351,6 +352,7 @@ volumes:
   marketing_mautic_data:
   matomo:
   matomo_db:
+  food_calc_db:
 
 
 
@@ -363,3 +365,4 @@ networks:
   matomo_network:
   matomo_db_network:
   food_calc_db_network:
+  food_calc_network:

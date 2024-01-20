@@ -3,7 +3,7 @@
  get_header()
 ?>
 
-<div class="container mt-5">
+<div class="container mt-5 content">
     <?php
     if ( have_posts() ){
 

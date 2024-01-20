@@ -1,266 +1,252 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <title>Dog Food Calculator</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<div class="container mt-5">
+    <h2 class="mb-4">Dog Food Calculator</h2>
+    <form id="dogFoodForm">
+        
+        <!-- Dog's Name Question -->
+        <div id="dogNameQuestion" class="question">
+            <p><b>Question 1 of 9:</b> About your dog</p>
+            <p>Tell us about your Dog. What is their name?</p>
+            <p style="font-size: 80%; color: #777;">p.s we dont keep any data you submit in this form</p>
+            <input type="text" id="dogName" class="form-control" placeholder="Enter Dog's Name">
+            <div class="row mt-2">
+                <div class="col">
+                    <!--Nothing here. Space where back button should be but this is the first question. -->
+                </div>
+                <div class="col text-end">
+                    <button type="button" class="btn btn-cta-secondary mt-2" onclick="selectDogName()">Next</button>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Age Bracket Question -->
+        <div id="dogAgeQuestion" class="question d-none">
+            <p><b>Question 2 of 9:</b> {dogName}'s Age</p>
+            <p>Tell us more about {dogName}. How old are they?</p>
+            <p style="font-size: 80%; color: #777;"> Dogs need very different things from their food at different ages. Telling us your dogs age will help us to find the right profile of nutrients that match {dogName}'s age.</p>
+            <label for="ageMonths">Months:</label>
+            <input type="range" id="ageMonths" class="slider-track slider-thumb" name="ageMonths" min="0" max="11" value="0" oninput="updateAgeDisplay()">
+            <span id="monthsDisplay">0</span> months
+            <br>
+            <label for="ageYears">Years:</label>
+            <input type="range" id="ageYears" class="slider-track slider-thumb" name="ageYears" min="0" max="16" value="0" oninput="updateAgeDisplay()">
+            <span id="yearsDisplay">0</span> years
+            <br>
+            <div class="row mt-2">
+                <div class="col">
+                    <button type="button" class="btn btn-cta-secondary btn-block" onclick="showPreviousQuestion()">Back</button>
+                </div>
+                <div class="col text-end">
+                    <button type="button" class="btn btn-cta-secondary btn-block" onclick="selectDogAge()">Next</button>
+                </div>
+            </div>
+            
+        </div>
+
+
+        <!-- Dog Size Question -->
+
+        <div id="dogSizeQuestion" class="question d-none">
+            <p><b>Question 3 of 9:</b> {dogName}'s Ideal Adult Size</p>
+            <p>What is {dogName}'s ideal weight?</p>    
+            <p>If {dogName} isn't fully grown yet, what is their ideal weight as an adult:</p>
+            <p style="font-size: 80%; color: #777;"> Dogs of different sizes need different nutrient density in their food. By telling us {dogName}'s size we can find a food that matches those requirements.</p>
+            <div class="d-flex flex-wrap justify-content-center mb-2">
+                <input type="radio" class="btn-check" name="dogSize" id="Miniature" autocomplete="off">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="Miniature">Miniature (Under 4 kg)</label>
+
+                <input type="radio" class="btn-check" name="dogSize" id="Small" autocomplete="off">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="Small">Small (4 - 10 kg)</label>
+
+                <input type="radio" class="btn-check" name="dogSize" id="Medium" autocomplete="off">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="Medium">Medium (11 - 25 kg)</label>
+
+                <input type="radio" class="btn-check" name="dogSize" id="Large" autocomplete="off">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="Large">Large (26 - 44 kg)</label>
+
+                <input type="radio" class="btn-check" name="dogSize" id="Giant" autocomplete="off">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="Giant">Giant (Over 44 kg)</label>
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    <button type="button" class="btn btn-cta-secondary btn-block" onclick="showPreviousQuestion()">Back</button>
+                </div>
+                <div class="col text-end">
+                    <button type="button" class="btn btn-cta-secondary btn-block" onclick="selectDogSize()">Next</button>
+                </div>
+            </div>
+        </div>
 
 
 
+        
+        <!-- Breed Question -->
+        <div id="breedQuestion" class="question d-none">
+            <p><b>Question 4 of 9:</b> {dogName}'s Breed</p>
+            <p>What is {dogName}'s primary breed:</p>
+            <p style="font-size: 80%; color: #777;"> Some manufacturers make foods specific to certain breeds. These can have nutrtional profiles that mean any deficiencies {dogName}'s breed might commonly have will be covered by this food. 
+                <br><br>
+                However, a breed specific food isn't neccessarily always the best choice. There can be other factors that impact your choice, for example many breed specific foods are formulated for adults only.</p>
+            <select class="form-select" id="breed" name="breed">
+                <option value="">Select a Breed</option> <!-- Default option -->
+                <option value="null">I don't know / Mixture / Not Listed</option>
+                <option value="breed1">Breed 1</option>
+                <option value="breed2">Breed 2</option>
+                <!-- Add more breed options as needed -->
+            </select>
+            <div class="row mt-2">
+                <div class="col">
+                    <button type="button" class="btn btn-cta-secondary btn-block" onclick="showPreviousQuestion()">Back</button>
+                </div>
+                <div class="col text-end">
+                    <button type="button" class="btn btn-cta-secondary btn-block" onclick="selectBreed()">Next</button>
+                </div>
+            </div>
+        </div>
 
-</head>
-<body>
-        <div class="container mt-5">
-            <h2 class="mb-4">Dog Food Calculator</h2>
-            <form id="dogFoodForm">
+        <!-- Question 1: Neutered or Spayed -->
+        <div id="neuteredQuestion" class="question d-none">
+            <p><b>Question 5 of 9:</b> Understanding {dogName}'s Nutritional Requirements</p>
+            <p>Is {dogName} Neutered or Spayed?</p>
+            <p style="font-size: 80%; color: #777;"> Dogs that are entire might need food that is more dense in nutrients because they might burn more energy. Telling us whether {dogName} is entire helps us calculate the nutrient density {dogName} might need.</p>
+            <div class="d-flex flex-wrap justify-content-center mb-2">
+                <input type="radio" class="btn-check" name="neutered" id="neuteredYes" autocomplete="off" value="10">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="neuteredYes">Entire</label>
                 
-                <!-- Dog's Name Question -->
-                <div id="dogNameQuestion" class="question">
-                    <p><b>Question 1 of 9:</b> About your dog</p>
-                    <p>Tell us about your Dog. What is their name?</p>
-                    <p>p.s we dont keep any data you submit in this form</p>
-                    <input type="text" id="dogName" class="form-control" placeholder="Enter Dog's Name">
-                    <div class="row mt-2">
-                        <div class="col">
-                            <!--Nothing here. Space where back button should be but this is the first question. -->
-                        </div>
-                        <div class="col text-end">
-                            <button type="button" class="btn btn-primary mt-2" onclick="selectDogName()">Next</button>
-                        </div>
-                    </div>
+                <input type="radio" class="btn-check" name="neutered" id="neuteredNo" autocomplete="off" value="1">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="neuteredNo">Neutered / Spayed</label>
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    <button type="button" class="btn btn-cta-secondary mt-2" onclick="showPreviousQuestion()">Back</button>
                 </div>
+                <div class="col text-end">
+                    <button type="button" class="btn btn-cta-secondary mt-2" onclick="selectNeutered()">Next</button>
+                </div>
+            </div>                                      
+        </div>
+
+
+        <!-- Question 2: Activity Level -->
+
+        <div id="activityLevelQuestion" class="question d-none">
+            <p><b>Question 6 of 9:</b> Understanding {dogName}'s Nutritional Requirements</p>
+            <p>How much exercise (e.g a dog walk) does {dogName} do every day?</p>
+            <p style="font-size: 80%; color: #777;"> Dogs that exercise a lot will need a food that is more nutrient dense, as they will burn a lot of energy with all that extra exercise. Telling us how much {dogName} exercises helps us take it into account in our ideal nutrient density calculations.</p>
+            <div class="d-flex flex-wrap justify-content-center mb-2">
+                <input type="radio" class="btn-check" name="activityLevel" id="activityLevelLow" autocomplete="off" value="1">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="activityLevelLow">Low (Under 1 hour)</label>
                 
+                <input type="radio" class="btn-check" name="activityLevel" id="activityLevelMedium" autocomplete="off" value="5">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="activityLevelMedium">Medium (1 - 2 hours)</label>
 
-                <!-- Age Bracket Question -->
-                <div id="dogAgeQuestion" class="question d-none">
-                    <p><b>Question 2 of 9:</b> {dogName}'s Age</p>
-                    <p>How old is {dogName}?</p>
-                    <label for="ageMonths">Months:</label>
-                    <input type="range" id="ageMonths" name="ageMonths" min="0" max="11" value="0" oninput="updateAgeDisplay()">
-                    <span id="monthsDisplay">0</span> months
-                    <br>
-                    <label for="ageYears">Years:</label>
-                    <input type="range" id="ageYears" name="ageYears" min="0" max="16" value="0" oninput="updateAgeDisplay()">
-                    <span id="yearsDisplay">0</span> years
-                    <br>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <button type="button" class="btn btn-primary btn-block" onclick="showPreviousQuestion()">Back</button>
-                        </div>
-                        <div class="col text-end">
-                            <button type="button" class="btn btn-primary btn-block" onclick="selectDogAge()">Next</button>
-                        </div>
-                    </div>
-                    
+                <input type="radio" class="btn-check" name="activityLevel" id="activityLevelHigh" autocomplete="off" value="10">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="activityLevelHigh">High (More than 2 hours)</label>
+
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    <button type="button" class="btn btn-cta-secondary mt-2" onclick="showPreviousQuestion()">Back</button>
                 </div>
-
-
-                <!-- Dog Size Question -->
-
-                <div id="dogSizeQuestion" class="question d-none">
-                    <p><b>Question 3 of 9:</b> {dogName}'s Ideal Adult Size</p>
-                    <p>What is {dogName}'s ideal weight? 
-                        <br><br>
-                        If {dogName} isn't fully grown yet, what is their ideal weight as an adult:</p>
-
-                    <div class="d-flex flex-wrap justify-content-center mb-2">
-                        <input type="radio" class="btn-check" name="dogSize" id="Miniature" autocomplete="off">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="Miniature">Miniature (Under 4 kg)</label>
-
-                        <input type="radio" class="btn-check" name="dogSize" id="Small" autocomplete="off">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="Small">Small (4 - 10 kg)</label>
-
-                        <input type="radio" class="btn-check" name="dogSize" id="Medium" autocomplete="off">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="Medium">Medium (11 - 25 kg)</label>
-
-                        <input type="radio" class="btn-check" name="dogSize" id="Large" autocomplete="off">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="Large">Large (26 - 44 kg)</label>
-
-                        <input type="radio" class="btn-check" name="dogSize" id="Giant" autocomplete="off">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="Giant">Giant (Over 44 kg)</label>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <button type="button" class="btn btn-primary btn-block" onclick="showPreviousQuestion()">Back</button>
-                        </div>
-                        <div class="col text-end">
-                            <button type="button" class="btn btn-primary btn-block" onclick="selectDogSize()">Next</button>
-                        </div>
-                    </div>
+                <div class="col text-end">
+                    <button type="button" class="btn btn-cta-secondary mt-2" onclick="selectActivityLevel()">Next</button>
                 </div>
+            </div>                                      
+        </div>
 
-
-
+        <!-- Question 3: Body Condition -->
+        <div id="bodyConditionQuestion" class="question d-none">
+            <p><b>Question 7 of 9:</b> Understanding {dogName}'s Nutritional Requirements</p>
+            <p>How does {dogName} look?</p>
+            <p style="font-size: 80%; color: #777;">Dogs that are underweight might need more nutrient dense food, and dogs that are overweight might do better on food that satisfies their appetite without adding to their weight problem. By telling us how {dogName} looks we can take it into account in our overall calculations of their nutrtional needs.</p>
+            <p>A dog at an ideal weight will have:</p>
+            <ul>
+                <li><b>A visible waistline:</b> Viewed from above, there should be a noticeable waist.</li>
+                <li><b>Ribs Not Easily Seen but Felt:</b> The ribs shouldn’t be visible but should be easily felt under a slight layer of fat.</li>
+                <li><b>Tucked Abdomen:</b> The belly should be tucked up when viewed from the side.</li>
+            </ul>
+            <div class="d-flex flex-wrap justify-content-center mb-2">
+                <input type="radio" class="btn-check" name="bodyCondition" id="bodyConditionUnder" autocomplete="off" value="10">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="bodyConditionUnder">Underweight</label>
                 
-                <!-- Breed Question -->
-                <div id="breedQuestion" class="question d-none">
-                    <p><b>Question 4 of 9:</b> {dogName}'s Breed</p>
-                    <p>What is {dogName}'s primary breed:</p>
-                    <select class="form-select" id="breed" name="breed">
-                        <option value="">Select a Breed</option> <!-- Default option -->
-                        <option value="null">I don't know / Mixture / Not Listed</option>
-                        <option value="breed1">Breed 1</option>
-                        <option value="breed2">Breed 2</option>
-                        <!-- Add more breed options as needed -->
-                    </select>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <button type="button" class="btn btn-primary btn-block" onclick="showPreviousQuestion()">Back</button>
-                        </div>
-                        <div class="col text-end">
-                            <button type="button" class="btn btn-primary btn-block" onclick="selectBreed()">Next</button>
-                        </div>
-                    </div>
+                <input type="radio" class="btn-check" name="bodyCondition" id="bodyConditionIdeal" autocomplete="off" value="5">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="bodyConditionIdeal">Ideal</label>
+
+                <input type="radio" class="btn-check" name="bodyCondition" id="bodyConditionOver" autocomplete="off" value="1">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="bodyConditionOver">Overweight</label>
+
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    <button type="button" class="btn btn-cta-secondary mt-2" onclick="showPreviousQuestion()">Back</button>
                 </div>
-
-                <!-- Question 1: Neutered or Spayed -->
-                <div id="neuteredQuestion" class="question d-none">
-                    <p><b>Question 5 of 9:</b> Understanding {dogName}'s Nutritional Requirements</p>
-                    <p>Is {dogName} Neutered or Spayed?</p>
-                    <div class="d-flex flex-wrap justify-content-center mb-2">
-                        <input type="radio" class="btn-check" name="neutered" id="neuteredYes" autocomplete="off" value="10">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="neuteredYes">Entire</label>
-                        
-                        <input type="radio" class="btn-check" name="neutered" id="neuteredNo" autocomplete="off" value="1">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="neuteredNo">Neutered / Spayed</label>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <button type="button" class="btn btn-primary mt-2" onclick="showPreviousQuestion()">Back</button>
-                        </div>
-                        <div class="col text-end">
-                            <button type="button" class="btn btn-primary mt-2" onclick="selectNeutered()">Next</button>
-                        </div>
-                    </div>                                      
+                <div class="col text-end">
+                    <button type="button" class="btn btn-cta-secondary mt-2" onclick="selectBodyCondition()">Next</button>
                 </div>
+            </div>                                      
+        </div>
 
+        <!-- Wet or Dry Food Question -->
+        <div id="wetOrDryQuestion" class="question d-none">
+            <p><b>Question 8 of 9:</b> Understanding {dogName}'s food preference</p>
+            <p>What is your preference for the type of food you feed {dogName}?</p>
+            <p style="font-size: 80%; color: #777;"> We recommend feeding your dog dry food only if they will eat it. But we know some dogs can be picky eaters! If thats the case you might need to feed them wet food.</p>
+            <div class="d-flex flex-wrap justify-content-center mb-2">
+                <input type="radio" class="btn-check" name="wetOrDry" id="wet" autocomplete="off">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="wet">Wet Food</label>
 
-                <!-- Question 2: Activity Level -->
-
-                <div id="activityLevelQuestion" class="question d-none">
-                    <p><b>Question 6 of 9:</b> Understanding {dogName}'s Nutritional Requirements</p>
-                    <p>How much exercise (e.g a dog walk) does {dogName} do every day?</p>
-                    <div class="d-flex flex-wrap justify-content-center mb-2">
-                        <input type="radio" class="btn-check" name="activityLevel" id="activityLevelLow" autocomplete="off" value="1">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="activityLevelLow">Low (Under 1 hour)</label>
-                        
-                        <input type="radio" class="btn-check" name="activityLevel" id="activityLevelMedium" autocomplete="off" value="5">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="activityLevelMedium">Medium (1 - 2 hours)</label>
-
-                        <input type="radio" class="btn-check" name="activityLevel" id="activityLevelHigh" autocomplete="off" value="10">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="activityLevelHigh">High (More than 2 hours)</label>
-
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <button type="button" class="btn btn-primary mt-2" onclick="showPreviousQuestion()">Back</button>
-                        </div>
-                        <div class="col text-end">
-                            <button type="button" class="btn btn-primary mt-2" onclick="selectActivityLevel()">Next</button>
-                        </div>
-                    </div>                                      
+                <input type="radio" class="btn-check" name="wetOrDry" id="dry" autocomplete="off">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="dry">Dry Food</label>
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    <button type="button" class="btn btn-cta-secondary btn-block" onclick="showPreviousQuestion()">Back</button>
                 </div>
-
-                <!-- Question 3: Body Condition -->
-                <div id="bodyConditionQuestion" class="question d-none">
-                    <p><b>Question 7 of 9:</b> Understanding {dogName}'s Nutritional Requirements</p>
-                    <p>How does {dogName} look?</p>
-                    <p>A dog at an ideal weight will have:</p>
-                    <ul>
-                        <li><b>A visible waistline:</b> Viewed from above, there should be a noticeable waist.</li>
-                        <li><b>Ribs Not Easily Seen but Felt:</b> The ribs shouldn’t be visible but should be easily felt under a slight layer of fat.</li>
-                        <li><b>Tucked Abdomen:</b> The belly should be tucked up when viewed from the side.</li>
-                    </ul>
-                    <div class="d-flex flex-wrap justify-content-center mb-2">
-                        <input type="radio" class="btn-check" name="bodyCondition" id="bodyConditionUnder" autocomplete="off" value="10">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="bodyConditionUnder">Underweight</label>
-                        
-                        <input type="radio" class="btn-check" name="bodyCondition" id="bodyConditionIdeal" autocomplete="off" value="5">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="bodyConditionIdeal">Ideal</label>
-
-                        <input type="radio" class="btn-check" name="bodyCondition" id="bodyConditionOver" autocomplete="off" value="1">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="bodyConditionOver">Overweight</label>
-
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <button type="button" class="btn btn-primary mt-2" onclick="showPreviousQuestion()">Back</button>
-                        </div>
-                        <div class="col text-end">
-                            <button type="button" class="btn btn-primary mt-2" onclick="selectBodyCondition()">Next</button>
-                        </div>
-                    </div>                                      
+                <div class="col text-end">
+                    <button type="button" class="btn btn-cta-secondary btn-block" onclick="selectWetOrDry()">Next</button>
                 </div>
+            </div>
+        </div>
 
-                <!-- Wet or Dry Food Question -->
-                <div id="wetOrDryQuestion" class="question d-none">
-                    <p><b>Question 8 of 9:</b> Understanding {dogName}'s food preference</p>
-                    <p>What is your preference for the type of food you feed {dogName}?</p>
 
-                    <div class="d-flex flex-wrap justify-content-center mb-2">
-                        <input type="radio" class="btn-check" name="wetOrDry" id="wet" autocomplete="off">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="wet">Wet Food</label>
+        <!-- Cost Question -->
 
-                        <input type="radio" class="btn-check" name="wetOrDry" id="dry" autocomplete="off">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="dry">Dry Food</label>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <button type="button" class="btn btn-primary btn-block" onclick="showPreviousQuestion()">Back</button>
-                        </div>
-                        <div class="col text-end">
-                            <button type="button" class="btn btn-primary btn-block" onclick="selectWetOrDry()">Next</button>
-                        </div>
-                    </div>
+        <div id="costQuestion" class="question d-none">
+            <p><b>Question 9 of 9:</b> Your Budget for {dogName}</p>
+            <p>What is your budget for {dogName}'s food?</p>
+            <p style="font-size: 80%; color: #777;"> We will make every effort to find a food option within your budget, however our search algorithm will strive to identify a food option that aligns with {dogName}'s specific needs ahead of price. </p>
+            <div class="d-flex flex-wrap justify-content-center mb-2">
+                <input type="radio" class="btn-check" name="cost" id="low" autocomplete="off">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="low">£ - Low</label>
+
+                <input type="radio" class="btn-check" name="cost" id="medium" autocomplete="off">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="medium">££ - Medium</label>
+
+                <input type="radio" class="btn-check" name="cost" id="high" autocomplete="off">
+                <label class="ms-1 me-1 mt-1 mb-1 btn btn-cta-secondary-outline" for="high">£££ - High</label>
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    <button type="button" class="btn btn-cta-secondary btn-block" onclick="showPreviousQuestion()">Back</button>
                 </div>
-
-
-                <!-- Cost Question -->
-
-                <div id="costQuestion" class="question d-none">
-                    <p><b>Question 9 of 9:</b> Your Budget for {dogName}</p>
-                    <p>What is your budget for {dogName}'s food?</p>
-
-                    <div class="d-flex flex-wrap justify-content-center mb-2">
-                        <input type="radio" class="btn-check" name="cost" id="low" autocomplete="off">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="low">£ - Low</label>
-
-                        <input type="radio" class="btn-check" name="cost" id="medium" autocomplete="off">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="medium">££ - Medium</label>
-
-                        <input type="radio" class="btn-check" name="cost" id="high" autocomplete="off">
-                        <label class="ms-1 me-1 mt-1 mb-1 btn btn-outline-primary" for="high">£££ - High</label>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <button type="button" class="btn btn-primary btn-block" onclick="showPreviousQuestion()">Back</button>
-                        </div>
-                        <div class="col text-end">
-                            <button type="button" class="btn btn-primary btn-block" onclick="selectCost(), callApi()">Show Results</button>
-                        </div>
-                    </div>
+                <div class="col text-end">
+                    <button type="button" class="btn btn-cta-secondary btn-block" onclick="selectCost(), callApi()">Show Results</button>
                 </div>
+            </div>
+        </div>
 
-                <div class="container-fluid">
-                <div id="results" class="row">
-                <!-- Results will be displayed here -->
-                </div>
-                </div>
+        <div class="container-fluid">
+        <div id="results" class="row">
+        <!-- Results will be displayed here -->
+        </div>
+        </div>
 
-                <div id="resetdiv" class="question d-none">
-                    <button type="button" class=" mt-5 btn btn-primary btn-block" onclick="resetCalculator()">Search Again</button>
-                </div>
+        <div id="resetdiv" class="question d-none">
+            <button type="button" class=" mt-5 btn btn-cta-secondary btn-block" onclick="resetCalculator()">Search Again</button>
+        </div>
 
 
 
-                </div>
+        </div>
 
-                    <!-- Bootstrap Bundle with Popper -->
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-
-                    <script src="script.js"></script>
-    </body>
-</html>    
+            <script src="/wp-content/themes/PetWeb-Template/assets/js/calculator.js"></script>

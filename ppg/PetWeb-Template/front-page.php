@@ -4,7 +4,7 @@ get_header()
 ?>
 
     <!-- Hero section -->
-    <div class="container-fluid h-75 d-flex align-items-center petweb-hero" >
+    <div class="container-fluid d-flex align-items-center petweb-hero" >
         
         <div class="container">
         <h1 class="display-1">Discover, Learn, Love</h1>

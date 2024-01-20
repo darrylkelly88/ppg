@@ -65,4 +65,53 @@ function prefix_bs5_dropdown_data_attribute( $atts, $item, $args ) {
 
 
 
+function print_ajax_nonce() {
+    $nonce = wp_create_nonce('your_custom_nonce');
+    echo "<script type='text/javascript'>\n";
+    echo "var ajax_object = { ajax_url: '".admin_url('admin-ajax.php')."', nonce: '".$nonce."' };\n";
+    echo "</script>";
+}
+add_action('wp_head', 'print_ajax_nonce');
+
+
+
+function handle_custom_api_call() {
+    // Verify the nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'your_custom_nonce')) {
+        wp_send_json_error('Nonce verification failed');
+        wp_die();
+    }
+
+    // Check for your parameters
+    if ( isset($_POST['params']) ) {
+        $params = json_decode(stripslashes($_POST['params']), true);
+
+        // Here, make your API call and process the response
+        $api_url = 'http://food_calc:3000/api/v1/food'; // Replace with your API URL
+        $api_response = wp_remote_get(add_query_arg($params, $api_url));
+
+        if ( is_wp_error($api_response) ) {
+            // Handle error
+            wp_send_json_error($api_response->get_error_message());
+        } else {
+            // Send the response back to JavaScript
+            wp_send_json_success(json_decode(wp_remote_retrieve_body($api_response), true));
+        }
+    } else {
+        wp_send_json_error('No parameters provided');
+    }
+
+    wp_die(); // this is required to terminate immediately and return a proper response
+}
+
+
+// Hook for logged-in users
+add_action('wp_ajax_call_custom_api', 'handle_custom_api_call');
+
+// Hook for non-logged-in users
+add_action('wp_ajax_nopriv_call_custom_api', 'handle_custom_api_call');
+
+
+
+
 ?>

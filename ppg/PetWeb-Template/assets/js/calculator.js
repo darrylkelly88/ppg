@@ -17,6 +17,8 @@ function showNextQuestion() {
         questions[currentQuestion].classList.add('d-none');
         currentQuestion++;
         questions[currentQuestion].classList.remove('d-none');
+
+        window.scrollTo(0, 0);
     }
 }
 
@@ -25,6 +27,8 @@ function showPreviousQuestion() {
         questions[currentQuestion].classList.add('d-none');
         currentQuestion--;
         questions[currentQuestion].classList.remove('d-none');
+
+        window.scrollTo(0, 0);
     }
 }
 
@@ -99,6 +103,11 @@ function selectDogAge() {
     const months = parseInt(document.getElementById('ageMonths').value, 10);
     const totalMonths = (years * 12) + months;
 
+    if (totalMonths === 0) {
+        alert('Please tell us how old ' + (params['dogName'] || 'your dog') + ' is.');
+        return; // Exit the function and wait for the user to input the age.
+    }
+
     let ageBracket = '';
     if (totalMonths <= 12) {
         ageBracket = 'Puppy';
@@ -125,7 +134,7 @@ function selectDogSize() {
         params['dogSize'] = selectedSize.id; // Store the ID or you can store another value    
         showNextQuestion();
     } else {
-        alert('Please select a size for ' + (params['dogName'] || 'your dog') + '.');
+        alert('Please tell us how big ' + (params['dogName'] || 'your dog') + ' is.');
     }
 }
 
@@ -139,7 +148,7 @@ function selectBreed() {
         params['breed'] = breedValue; // Save the breed value to params
         showNextQuestion(); // Move to the next question
     } else {
-        alert('Please select a breed.'); // Alert if no breed is selected
+        alert('Please tell us what breed ' + (params['dogName'] || 'your dog') + ' is.'); // Alert if no breed is selected
     }
 }
 
@@ -154,25 +163,50 @@ let bodyConditionScore = 0;
 
 //find neutered selection and move to next question
 function selectNeutered() {
-    const neuteredValue = document.querySelector('input[name="neutered"]:checked').value;
+    const neuteredRadio = document.querySelector('input[name="neutered"]:checked');
+    
+    // Check if any radio button is selected
+    if (!neuteredRadio) {
+        alert('Please tell us if ' + (params['dogName'] || 'your dog') + ' is neutered/spayed or entire.');
+        return; // Exit the function and wait for the user to make a selection.
+    }
+    
+    // Assuming neuteredRadio is not null as we've already checked
+    const neuteredValue = neuteredRadio.value;
     neuteredScore = parseInt(neuteredValue, 10);
     showNextQuestion();
 }
 
-//find activity level selection and move to next question
-function selectActivityLevel(value) {
-    const activityLevelValue = document.querySelector('input[name="activityLevel"]:checked').value;
+
+// Find activity level selection and move to next question
+function selectActivityLevel() {
+    const activityLevelRadio = document.querySelector('input[name="activityLevel"]:checked');
+    
+    if (!activityLevelRadio) {
+        alert('Please tell us how much activity ' + (params['dogName'] || 'your dog') + ' does.');
+        return; // Exit the function and wait for the user to make a selection.
+    }
+    
+    const activityLevelValue = activityLevelRadio.value;
     activityLevelScore = parseInt(activityLevelValue, 10);
     showNextQuestion();
 }
 
-//find body condition selection and move to next question
-function selectBodyCondition(value) {
-    const bodyConditionValue = document.querySelector('input[name="activityLevel"]:checked').value;
+// Find body condition selection, move to next question and calculate calorie density
+function selectBodyCondition() {
+    const bodyConditionRadio = document.querySelector('input[name="bodyCondition"]:checked');
+    
+    if (!bodyConditionRadio) {
+        alert('Please tell us about the condition ' + (params['dogName'] || 'your dog') + ' is in.');
+        return; // Exit the function and wait for the user to make a selection.
+    }
+    
+    const bodyConditionValue = bodyConditionRadio.value;
     bodyConditionScore = parseInt(bodyConditionValue, 10);
     showNextQuestion();
-    calculateCalorieDensity()
+    calculateCalorieDensity();
 }
+
 
 //weighted calculation to find the caloriedensity required
 function calculateCalorieDensity() {
@@ -217,7 +251,7 @@ function selectCost() {
         params['Cost'] = selectedCost.id; // Store the ID or you can store another value 
         showNextQuestion();
     } else {
-        alert('Please select a food preference for ' + (params['dogName'] || 'your dog') + '.');
+        alert('Please select your budget for ' + (params['dogName'] || 'your dog') + '.');
     }
 }
 
@@ -227,20 +261,28 @@ function selectCost() {
 //
 //
 function callApi() {
-    let url = new URL('http://192.168.1.130:3000/api/v1/food');
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+    // URL to WordPress AJAX handler
+    let ajaxurl = '/wp-admin/admin-ajax.php';
 
-    // Make the API call
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data); // Log the received data
-            displayResults(data);
-        })
-        .catch(error => console.error('Error:', error));
+    // Data to send in the request
+    let data = new FormData();
+    data.append('action', 'call_custom_api'); // The action hook name
+    data.append('params', JSON.stringify(params)); // Your params as a JSON string
+    data.append('nonce', ajax_object.nonce);
 
-        console.log(url.toString()); // Log the final URL
-};
+    // Make the AJAX request
+    fetch(ajaxurl, {
+        method: 'POST',
+        credentials: 'same-origin', // Needed for WordPress
+        body: data
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // Log the received data
+        displayResults(data);
+    })
+    .catch(error => console.error('Error:', error));
+}
 
 
 //Function to display the results based on user selections
@@ -315,20 +357,3 @@ function resetCalculator() {
     resultsDiv.innerHTML = '';
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
