@@ -42,6 +42,8 @@ body {
     color: #ffc55e;
 }
 
+.petweb-nav-links
+
 
 .petweb-hero h1 {
     font-weight: bolder;
@@ -111,12 +113,6 @@ body {
     background-color: #3e543f !important;
 }
 
-/* Style the labels when the corresponding radio button is checked */
-input[type="radio"]:checked + label.btn-cta-secondary-outline {
-    color: white !important;
-    border: 2px solid #3e543f !important;
-    background-color: #3e543f !important;
-}
 
 .btn-nav-bar{
     color: #ffc55e; /* Secondary text color */
@@ -207,10 +203,10 @@ input[type="radio"]:checked + label.btn-cta-secondary-outline {
   
   
     .top-picks-card-img-top {
-    width: 100%; /* Ensure the image takes up the full width of its container */
-    height: 200px; /* Set a fixed height for the image */
-    object-fit: cover; /* Ensure the image covers the specified dimensions while maintaining its aspect ratio */
-    }
+        width: 100%; /* Ensure the image takes up the full width of its container */
+        height: 100px; /* Set a fixed height for the image */
+        object-fit: cover; /* Ensure the image covers the specified dimensions while maintaining its aspect ratio */
+        }
  
       
     .card-img-200px {
@@ -239,8 +235,31 @@ input[type="radio"]:checked + label.btn-cta-secondary-outline {
     .sticky-column {
         height: 100%;
         position: sticky;
-        top: 100px;
+        top: 76px; /*Navbar is  48px high with 8px padding. This leave 20px clearance*/
     }
+
+    .sticky-column > * {
+        margin-bottom: 20px;
+        margin-left:20px;
+    }
+
+    @media (max-width: 1399px) {
+        .sticky-column::before {
+            content: '';
+            display: block;
+            margin-left: -12.5%; /* Half of the added width to center align */
+        }
+    
+        .sticky-column > * { /* Apply scaling to all direct children */
+            transform: scale(0.8);
+            transform-origin: top left;
+            width: 125%; /* Increase the width to compensate for scaling */
+            margin-bottom: 5px;
+            padding-bottom: 0px;
+        }           
+
+    }
+
 
 /* makes a single item sticky - should be applied to a single item */
     .sticky-item {
@@ -311,3 +330,10 @@ input[type="radio"]:checked + label.btn-cta-secondary-outline {
         object-fit: contain; /* Ensures image covers the container */
     }
 
+    /* Style the labels when the corresponding radio button is checked */
+    /* This might apply to all radio buttons.... not just the calculator*/
+    input[type="radio"]:checked + label.btn-cta-secondary-outline {
+        color: white !important;
+        border: 2px solid #3e543f !important;
+        background-color: #3e543f !important;
+    }

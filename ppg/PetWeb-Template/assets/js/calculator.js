@@ -242,6 +242,21 @@ function selectWetOrDry() {
 }
 
 
+
+// Protein Preference Selection
+//
+//
+    // Function to protein preference selection drop down
+    function selectProtein() {
+        const proteinValue = document.getElementById('protein').value;
+        if (proteinValue) {
+            params['protein'] = proteinValue; // Save the breed value to params
+            showNextQuestion(); // Move to the next question
+        } else {
+            alert('Please tell us what ' + (params['dogName'] || 'your dog') + ' likes to eat.'); // Alert if no breed is selected
+        }
+    }
+
 // Function to select budget
 //
 //

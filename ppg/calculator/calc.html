@@ -1,10 +1,25 @@
 <div class="container mt-5">
-    <h2 class="mb-4">Dog Food Calculator</h2>
+    
     <form id="dogFoodForm">
         
+        <div id="IntroQuestion" class="question">
+        <p>Welcome to our Personalized Dog Food Calculator, a helpful tool designed to assist you in finding the ideal food for your beloved dog. We understand that selecting the right dog food can sometimes be a challenging task. That's why we've simplified the process for you. </p>
+        <p>By answering some basic questions about your dog's specific needs, you enable us to provide personalized food recommendations. </p>
+        <p>Our algorithm is designed to carefully match your pet with a selection of high-quality foods, ensuring they receive the nutrition they need. This way, you can spend less time guessing and more time enjoying the company of a happy and healthy canine friend.</p>
+            <div class="row mt-2">
+                <div class="col">
+                    <!--Nothing here. Space where back button should be but this is the first question. -->
+                </div>
+                <div class="col text-end">
+                    <button type="button" class="btn btn-cta-secondary mt-2" onclick="showNextQuestion()">Begin</button>
+                </div>
+            </div>
+        </div>
+
+
         <!-- Dog's Name Question -->
-        <div id="dogNameQuestion" class="question">
-            <p><b>Question 1 of 9:</b> About your dog</p>
+        <div id="dogNameQuestion" class="question d-none">
+            <p><b>Question 1 of 10:</b> About your dog</p>
             <p>Tell us about your Dog. What is their name?</p>
             <p style="font-size: 80%; color: #777;">p.s we dont keep any data you submit in this form</p>
             <input type="text" id="dogName" class="form-control" placeholder="Enter Dog's Name">
@@ -21,7 +36,7 @@
 
         <!-- Age Bracket Question -->
         <div id="dogAgeQuestion" class="question d-none">
-            <p><b>Question 2 of 9:</b> {dogName}'s Age</p>
+            <p><b>Question 2 of 10:</b> {dogName}'s Age</p>
             <p>Tell us more about {dogName}. How old are they?</p>
             <p style="font-size: 80%; color: #777;"> Dogs need very different things from their food at different ages. Telling us your dogs age will help us to find the right profile of nutrients that match {dogName}'s age.</p>
             <label for="ageMonths">Months:</label>
@@ -47,7 +62,7 @@
         <!-- Dog Size Question -->
 
         <div id="dogSizeQuestion" class="question d-none">
-            <p><b>Question 3 of 9:</b> {dogName}'s Ideal Adult Size</p>
+            <p><b>Question 3 of 10:</b> {dogName}'s Ideal Adult Size</p>
             <p>What is {dogName}'s ideal weight?</p>    
             <p>If {dogName} isn't fully grown yet, what is their ideal weight as an adult:</p>
             <p style="font-size: 80%; color: #777;"> Dogs of different sizes need different nutrient density in their food. By telling us {dogName}'s size we can find a food that matches those requirements.</p>
@@ -82,9 +97,9 @@
         
         <!-- Breed Question -->
         <div id="breedQuestion" class="question d-none">
-            <p><b>Question 4 of 9:</b> {dogName}'s Breed</p>
+            <p><b>Question 4 of 10:</b> {dogName}'s Breed</p>
             <p>What is {dogName}'s primary breed:</p>
-            <p style="font-size: 80%; color: #777;"> Some manufacturers make foods specific to certain breeds. These can have nutrtional profiles that mean any deficiencies {dogName}'s breed might commonly have will be covered by this food. 
+            <p style="font-size: 80%; color: #777;"> Some manufacturers make foods specific to certain breeds. These can have nutritional profiles that mean any deficiencies {dogName}'s breed might commonly have will be covered by this food. 
                 <br><br>
                 However, a breed specific food isn't neccessarily always the best choice. There can be other factors that impact your choice, for example many breed specific foods are formulated for adults only.</p>
             <select class="form-select" id="breed" name="breed">
@@ -106,7 +121,7 @@
 
         <!-- Question 1: Neutered or Spayed -->
         <div id="neuteredQuestion" class="question d-none">
-            <p><b>Question 5 of 9:</b> Understanding {dogName}'s Nutritional Requirements</p>
+            <p><b>Question 5 of 10:</b> Understanding {dogName}'s Nutritional Requirements</p>
             <p>Is {dogName} Neutered or Spayed?</p>
             <p style="font-size: 80%; color: #777;"> Dogs that are entire might need food that is more dense in nutrients because they might burn more energy. Telling us whether {dogName} is entire helps us calculate the nutrient density {dogName} might need.</p>
             <div class="d-flex flex-wrap justify-content-center mb-2">
@@ -130,7 +145,7 @@
         <!-- Question 2: Activity Level -->
 
         <div id="activityLevelQuestion" class="question d-none">
-            <p><b>Question 6 of 9:</b> Understanding {dogName}'s Nutritional Requirements</p>
+            <p><b>Question 6 of 10:</b> Understanding {dogName}'s Nutritional Requirements</p>
             <p>How much exercise (e.g a dog walk) does {dogName} do every day?</p>
             <p style="font-size: 80%; color: #777;"> Dogs that exercise a lot will need a food that is more nutrient dense, as they will burn a lot of energy with all that extra exercise. Telling us how much {dogName} exercises helps us take it into account in our ideal nutrient density calculations.</p>
             <div class="d-flex flex-wrap justify-content-center mb-2">
@@ -156,7 +171,7 @@
 
         <!-- Question 3: Body Condition -->
         <div id="bodyConditionQuestion" class="question d-none">
-            <p><b>Question 7 of 9:</b> Understanding {dogName}'s Nutritional Requirements</p>
+            <p><b>Question 7 of 10:</b> Understanding {dogName}'s Nutritional Requirements</p>
             <p>How does {dogName} look?</p>
             <p style="font-size: 80%; color: #777;">Dogs that are underweight might need more nutrient dense food, and dogs that are overweight might do better on food that satisfies their appetite without adding to their weight problem. By telling us how {dogName} looks we can take it into account in our overall calculations of their nutrtional needs.</p>
             <p>A dog at an ideal weight will have:</p>
@@ -188,7 +203,7 @@
 
         <!-- Wet or Dry Food Question -->
         <div id="wetOrDryQuestion" class="question d-none">
-            <p><b>Question 8 of 9:</b> Understanding {dogName}'s food preference</p>
+            <p><b>Question 8 of 10:</b> Understanding {dogName}'s food preference</p>
             <p>What is your preference for the type of food you feed {dogName}?</p>
             <p style="font-size: 80%; color: #777;"> We recommend feeding your dog dry food only if they will eat it. But we know some dogs can be picky eaters! If thats the case you might need to feed them wet food.</p>
             <div class="d-flex flex-wrap justify-content-center mb-2">
@@ -209,10 +224,37 @@
         </div>
 
 
+        <!-- Protein Preference Question -->
+        <div id="wetOrDryQuestion" class="question d-none">
+            <p><b>Question 9 of 10:</b> Understanding {dogName}'s food preference</p>
+            <p>Do you or {dogName} have a preference for the type of protein they eat?</p>
+            <select class="form-select" id="protein" name="protein">
+                <option value="">Select a Protein</option> <!-- Default option -->
+                <option value="null">No Preference / Not Listed</option>
+                <option value="chicken">Chicken</option>
+                <option value="turkey">Turkey</option>
+                <option value="turkey">Pork</option>
+                <option value="turkey">Beef</option>
+                <option value="turkey">Duck</option>
+                <option value="turkey">Venison</option>
+                <option value="turkey">Fish</option>
+                <!-- Add more breed options as needed -->
+            </select>
+            <div class="row mt-2">
+                <div class="col">
+                    <button type="button" class="btn btn-cta-secondary btn-block" onclick="showPreviousQuestion()">Back</button>
+                </div>
+                <div class="col text-end">
+                    <button type="button" class="btn btn-cta-secondary btn-block" onclick="selectProtein()">Next</button>
+                </div>
+            </div>
+        </div>
+
+
         <!-- Cost Question -->
 
         <div id="costQuestion" class="question d-none">
-            <p><b>Question 9 of 9:</b> Your Budget for {dogName}</p>
+            <p><b>Question 10 of 10:</b> Your Budget for {dogName}</p>
             <p>What is your budget for {dogName}'s food?</p>
             <p style="font-size: 80%; color: #777;"> We will make every effort to find a food option within your budget, however our search algorithm will strive to identify a food option that aligns with {dogName}'s specific needs ahead of price. </p>
             <div class="d-flex flex-wrap justify-content-center mb-2">
