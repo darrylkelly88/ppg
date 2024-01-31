@@ -13,12 +13,16 @@
                 </div>
                 <div class="col-md-6">
                     <h3>Contact Us</h3>
-                    <p>Email: info@example.com</p>
-                    <p>Phone: (123) 456-7890</p>
+                    <p>Email: info@perfectpetguides.co.uk</p>
+                    <br>
+                    <h4>Terms & Policies:</h4>
+                    <p>At Perfect Pet Guides, we're committed to transparency, trust, and respect in all our interactions. Our Privacy Policy and Cookie Policy are designed to ensure that your experience on our site is safe, secure, and aligned with your expectations.</p>
+                    <a href="/cookie-policy-uk/" style="color:white;">Cookie Policy</a>
+                    <a href="/privacy-policy/" style="color:white;">Privacy Policy</a>
                 </div>
             </div>
             <hr class="my-4">
-            <p class="text-center">&copy; 2023 Perfect Pet Guides. All rights reserved.</p>
+            <p class="text-center">&copy; 2024 Perfect Pet Guides. All rights reserved.</p>
         </div>
     </footer>
 

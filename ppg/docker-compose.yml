@@ -37,6 +37,7 @@ services:
       - web_network
       - marketing_mautic_network
       - matomo_network
+      - link_management_kutt_network
     healthcheck:
       test: ["CMD", "curl", "-f", "https://perfectpetguides.co.uk/health"]
       interval: 1m30s
@@ -161,6 +162,7 @@ services:
       retries: 0
     networks:
       - marketing_mautic_network
+      - link_management_kutt_network
 
 
 
@@ -177,6 +179,7 @@ services:
     image: mautic/mautic:v4-apache
     volumes:
       - marketing_mautic_data:/var/www/html
+      - ./mautic/mautic:/etc/cron.d/mautic
     environment:
       - MAUTIC_DB_HOST=marketing_mautic_db
       - MAUTIC_DB_USER=root
@@ -330,6 +333,50 @@ services:
       - MONGO_URL=mongodb://root:example@food_calc_db:27017
 
 
+# Link management software
+#
+#
+# https://github.com/thedevs-network/kutt
+
+
+  link_management_kutt:
+    container_name: link_management_kutt
+    image: kutt/kutt
+    depends_on:
+      - link_management_kutt_redis
+      - link_management_kutt_postgres
+    command: ["./wait-for-it.sh", "postgres:5432", "--", "npm", "start"]
+    env_file:
+      - linkManagement.env
+    environment:
+      DB_HOST: link_management_kutt_postgres
+      DB_NAME: kutt
+      DB_USER: user
+      DB_PASSWORD: pass
+      REDIS_HOST: link_management_kutt_redis
+    networks:
+      - link_management_kutt_network
+      - link_management_kutt_backend_network
+
+  link_management_kutt_redis:
+    container_name: link_management_kutt_redis
+    image: redis:6.0-alpine
+    volumes:
+      - link_management_kutt_redis_data:/data
+    networks:
+      - link_management_kutt_backend_network
+
+  link_management_kutt_postgres:
+    container_name: link_management_kutt_postgres
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: kutt
+    volumes:
+      - link_management_kutt_postgres_data:/var/lib/postgresql/data
+    networks:
+      - link_management_kutt_backend_network
 
 
 
@@ -353,6 +400,8 @@ volumes:
   matomo:
   matomo_db:
   food_calc_db:
+  link_management_kutt_redis_data:
+  link_management_kutt_postgres_data:
 
 
 
@@ -366,3 +415,5 @@ networks:
   matomo_db_network:
   food_calc_db_network:
   food_calc_network:
+  link_management_kutt_network:
+  link_management_kutt_backend_network:

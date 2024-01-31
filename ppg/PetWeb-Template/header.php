@@ -11,7 +11,7 @@
 
 </head>
 
-<body>
+
 
 <!-- Navbar -->
 <!-- 
@@ -21,7 +21,7 @@ Note: This will remove the href on the item and change it to either a <span> for
 Custom Links can be used to create headers for dropdown items if required - they do not need to link to anywhere.
 -->
 
-<nav class="navbar navbar-expand-lg fixed-top petweb-nav">
+<nav class="navbar navbar-expand-lg fixed-top petweb-nav mb-5">
     <div class="container">
       <a class="navbar-brand petweb-nav-links" href="/index.php"><?php echo get_bloginfo('name') ?></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,4 +49,4 @@ Custom Links can be used to create headers for dropdown items if required - they
     </div>
 </nav>
 
-
+<body>

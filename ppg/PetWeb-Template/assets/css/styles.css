@@ -15,6 +15,7 @@ html, body {
 
 body {
     min-height: 100vh;
+    padding-top: 48px;
 }
 
 .content {
@@ -50,10 +51,9 @@ body {
 }
 
 .btn-cta {
-    background-color: #d49d43; /* Baby blue background */
-    color: #ffffff; /* White text */
-    border: 2px solid #d49d43; /* Baby blue border */
-    /* Add padding and other styling as needed */
+    background-color: #d49d43;
+    color: #ffffff; 
+    border: 2px solid #d49d43; 
     padding: 10px 20px;
     text-decoration: none;
     display: inline-block;

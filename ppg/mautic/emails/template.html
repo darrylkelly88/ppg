@@ -1,0 +1,72 @@
+<mjml>
+	<mj-head>
+	  <mj-title>Perfect Pet Guides
+	  </mj-title>
+	  <mj-attributes>
+		<mj-text font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'">
+		</mj-text>
+	  </mj-attributes>
+	  <mj-style inline="inline">
+		.hover-effect:hover {
+		color: #d49d43; 
+		}
+	  </mj-style>
+	</mj-head>
+	<mj-body background-color="#E0E0E0">
+	  <!-- Light grey background for the entire email -->
+	  <!-- Title Section -->
+	  <mj-section padding="20px" padding-top="40px" padding-bottom="20px" background-color="#3e543f">
+		<mj-text font-size="30px" color="#ffffff" padding-left="20px" padding="20px" css-class="hover-effect">
+		  <a href="https://perfectpetguides.co.uk" style="color:#ffffff; text-decoration:none;">PerfectPetGuides.co.uk</a>
+		</mj-text>
+		<mj-text font-size="18px" color="#ffffff" padding-left="20px">
+		  <p>{subject}
+		  </p>
+		</mj-text>
+	  </mj-section>
+	  <mj-hero mode="fixed-height" height="300px" background-width="600px" background-height="300px" background-url="https://perfectpetguides.co.uk/wp-content/uploads/2024/01/dog-birthday-scaled.jpg" background-color="#2a2a2a" padding="0">
+	  </mj-hero>
+	  <!-- Main Content Section -->
+	  <mj-section background-color="#fafafa" padding="20px" padding-bottom="40px">
+		<mj-text line-height="1.5">
+		  <p>Hi {contactfield=firstname},
+			<br>
+			<br>
+			{contactfield=pet1_name}'s birthday is coming up soon!
+		  </p>
+		  <p>
+			<br>
+			We think it's a wonderful opportunity to spoil them a little extra, don't you? In the spirit of celebration, we've put together a few heartwarming ideas to make {contactfield=pet1_name}'s day even more memorable:
+		  </p>
+		</mj-text>
+	  </mj-section>
+	  <!-- More content goes here -->
+	  <!-- Footer Section -->
+	  <mj-section background-color="#343a40">
+		<mj-column>
+		  <mj-text line-height="1.5" color="#ffffff">
+			<p>
+			  "Every pet has a story, and we're here to help you make it a great one." - The Perfect Pet Guides Team
+			</p>
+		  </mj-text>
+		</mj-column>
+		<mj-column>
+		  <mj-text line-height="1.5" color="#ffffff">
+			<p>
+			  This email was sent to you by 
+			  <a href="https://perfectpetguides.co.uk" style="color:#ffffff">PerfectPetGuides.co.uk</a> To learn more about how we use your information, please see our
+			  <a href="https://perfectpetguides.co.uk/privacy-policy" style="color:#ffffff">Read our Privacy Policy</a>
+			</p>
+		  </mj-text>
+		</mj-column>
+	  </mj-section>
+	  <mj-section background-color="#343a40">
+		<mj-column>
+		  <mj-text font-size="10px" align="center" color="#ffffff">
+			If you no longer wish to receive these emails, you can 
+			<a href="{unsubscribe_url}" style="color: #ffffff; font-size: 10px;">unsubscribe here</a>.
+		  </mj-text>
+		</mj-column>
+	  </mj-section>
+	</mj-body>
+  </mjml>
