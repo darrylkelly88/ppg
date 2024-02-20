@@ -46,7 +46,7 @@ get_header()
                         <br>
                         Ready to become the best pet parent you can be? Click below to explore our New Owners Guide and set the stage for a lifetime of love and companionship! 
                     </p>
-                        <button class="btn btn-cta me-2 mt-4 mb-4 btn-lg" type="button">New Owner Guide</button>
+                    <a href="https://perfectpetguides.co.uk/new-owners-guide-download/" class="btn btn-cta me-2 mt-4 mb-4 btn-lg" role="button">New Owner Guide</a>
                 </div>
                 <div class="col-12 col-md-4 order-1 order-md-2">
                     <img src="<?php echo get_template_directory_uri().'/assets/images/newowners.jpg' ?>" class="img-fluid rounded-3 placeholder-glow mt-3 mb-3" loading="lazy">
@@ -92,16 +92,17 @@ get_header()
                 </div>
                     <div class="row">
                         <div class="col-md-6 order-2 mt-3">
-                            <h5>Pet Insurance</h5>
-                            This is a section about insurance
+                            <h5>Dog Insurance</h5>
                             <br>
+                            Start your pet ownership journey with confidence by learning all about dog insurance.
+                            <br><br>Our guide shows you how to pick the best insurance for your furry buddy, including help for emergency treatments and regular check-ups. 
+                            <br><br>Find out how to keep your pet safe and avoid big bills from surprise health problems. 
+                            <br><br>We'll explain why having good insurance is really important for taking care of your dog the right way.
                             <br>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            <br>
-                            <button class="btn btn-cta me-2 mt-4 mb-4 btn-lg" type="button">Ultimate Insurance Guide</button>
+                            <a href="https://perfectpetguides.co.uk/dog-insurance-the-ultimate-guide/" class="btn btn-cta me-2 mt-4 mb-4 btn-lg" role="button">Ultimate Insurance Guide</a>
                         </div>
                         <div class="col-md-6 mt-4 order-1">
-                            <img src="<?php echo get_template_directory_uri().'/assets/images/dog-eating.jpg' ?>" class="img-fluid rounded-3 placeholder-glow" loading="lazy">
+                            <img src="https://perfectpetguides.co.uk/wp-content/uploads/2024/02/insurance-document-scaled.jpg" class="img-fluid rounded-3 placeholder-glow" loading="lazy">
                         </div>    
                     </div>
             </div>
@@ -115,13 +116,14 @@ get_header()
                     </div>
                     <div class="row">
                         <div class="col-md-6 order-2 mt-3">
-                            <h5>Nutrtion</h5>
-                            This is a section about nutrition
+                            <h5>Dog Food and Nutrition</h5>
                             <br>
+                            Finding the best food for your dog can make them healthier, more energetic, and happier. 
+                            <br><br>Our guide makes understanding dog food easy, from learning about nutrition basics to picking the right meals and supplements. 
+                            <br><br>Discover how choosing the right food can be the best medicine, helping keep their immune system strong, their coat shiny, and their energy levels just right. 
+                            <br><br>We'll help you see through the confusing ads to choose the best for your dog's health. 
                             <br>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            <br>
-                            <button class="btn btn-cta me-2 mt-4 mb-4 btn-lg" type="button">Ultimate Food & Supplement Guide</button>
+                            <a href="https://perfectpetguides.co.uk/dog-nutrition/" class="btn btn-cta me-2 mt-4 mb-4 btn-lg" role="button">Dog Nutrition Guide</a>
                         </div>
                         <div class="col-md-6 mt-4 order-1">
                             <img src="<?php echo get_template_directory_uri().'/assets/images/dog-eating.jpg' ?>" class="img-fluid rounded-3 placeholder-glow" loading="lazy">
@@ -145,12 +147,12 @@ get_header()
                           <div class="carousel-item active">
                             <div class="col-md-3 p-2">
                               <div class="card h-100">
-                                <img src="<?php echo get_template_directory_uri().'/assets/images/dog-eating.jpg' ?>" class="card-img-top placeholder-glow card-img-200px" alt="..." loading="lazy">
+                                <img src="https://perfectpetguides.co.uk/wp-content/uploads/2024/01/man-holding-dog-biscuits-1024x683.jpg" class="card-img-top placeholder-glow card-img-200px" alt="..." loading="lazy">
                                 <div class="card-body">
-                                  <h5 class="card-title">Complete Diets</h5>
-                                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                  <h5 class="card-title">Dog Food</h5>
+                                  <p class="card-text">Unlock the secrets to your dog's diet with our comprehensive guide, making the maze of dog food choices simple and informed.</p>
                                 </div>
-                                <button class="btn btn-cta-outline m-3" type="button">Read Our Ultimate Guide</button>
+                                <a href="https://perfectpetguides.co.uk/dog-nutrition/dog-treats-a-guide/" class="btn btn-cta-outline m-3" role="button">Read Our Food Guide</a>
                               </div>
                             </div>
                           </div>
@@ -159,12 +161,12 @@ get_header()
                           <div class="carousel-item">
                             <div class="col-md-3 p-2">
                               <div class="card h-100">
-                                <img src="<?php echo get_template_directory_uri().'/assets/images/ty.jpg' ?>" class="card-img-top placeholder-glow card-img-200px" alt="..." loading="lazy">
+                                <img src="https://perfectpetguides.co.uk/wp-content/uploads/2024/01/oil-tablets-close-up-scaled.jpg" class="card-img-top placeholder-glow card-img-200px" alt="..." loading="lazy">
                                 <div class="card-body">
                                   <h5 class="card-title">Supplements</h5>
-                                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                  <p class="card-text">Boost your dog's health and vitality with our expert insights into the essential supplements for a thriving canine companion.</p>
                                 </div>
-                                <button class="btn btn-cta-outline m-3" type="button">Read Our Ultimate Guide</button>
+                                <a href="https://perfectpetguides.co.uk/dog-nutrition/dog-supplements-guide/" class="btn btn-cta-outline m-3" role="button">Read Our Supplements Guide</a>
                               </div>
                             </div>
                           </div>
@@ -173,12 +175,12 @@ get_header()
                           <div class="carousel-item">
                             <div class="col-md-3 p-2">
                               <div class="card h-100">
-                                <img src="<?php echo get_template_directory_uri().'/assets/images/newowners.jpg' ?>" class="card-img-top placeholder-glow card-img-200px" alt="..." loading="lazy">
+                                <img src="https://perfectpetguides.co.uk/wp-content/uploads/2024/02/magnifying-glass-scaled.jpg" class="card-img-top placeholder-glow card-img-200px" alt="..." loading="lazy">
                                 <div class="card-body">
-                                  <h5 class="card-title">Complementary Diets</h5>
-                                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                  <h5 class="card-title">Dog Food Finder</h5>
+                                  <p class="card-text">Get personalised recommendations for your dogs comlete diet with our dog food finder tool.</p>
                                 </div>
-                                <button class="btn btn-cta-outline m-3" type="button">Read Our Ultimate Guide</button>
+                                <a href="https://perfectpetguides.co.uk/dog-nutrition/dog-treats-a-guide/" class="btn btn-cta-outline m-3" role="button">Try it Now!</a>
                               </div>
                             </div>
                           </div>
@@ -187,12 +189,12 @@ get_header()
                           <div class="carousel-item">
                             <div class="col-md-3 p-2">
                               <div class="card h-100">
-                                <img src="<?php echo get_template_directory_uri().'/assets/images/dog-eating.jpg' ?>" class="card-img-top placeholder-glow card-img-200px" alt="..." loading="lazy">
+                                <img src="https://perfectpetguides.co.uk/wp-content/uploads/2024/01/dog-treats-in-jar-scaled.jpg" class="card-img-top placeholder-glow card-img-200px" alt="..." loading="lazy">
                                 <div class="card-body">
                                   <h5 class="card-title">Treats</h5>
-                                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                  <p class="card-text">Discover the perfect treat for every pup's palate in our guide to dog treats, from training aids to rewarding good behavior and everything in between.</p>
                                 </div>
-                                <button class="btn btn-cta-outline m-3" type="button">Read Our Ultimate Guide</button>
+                                <a href="https://perfectpetguides.co.uk/dog-nutrition/dog-treats-a-guide/" class="btn btn-cta-outline m-3" role="button">Read Our Treat Guide</a>
                               </div>
                             </div>
                           </div>

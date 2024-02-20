@@ -16,6 +16,8 @@ html, body {
 body {
     min-height: 100vh;
     padding-top: 48px;
+    display: flex;
+    flex-direction: column;
 }
 
 .content {
@@ -32,7 +34,9 @@ body {
    background-position: center;
    background-size: cover;
    color: white;
-   height: 75% !important;   
+   height: 75vh; /* Adjusted to use vh unit */
+   display: flex;
+   min-height:75vh;
 }
 
 .petweb-nav-links {
@@ -204,7 +208,7 @@ body {
   
     .top-picks-card-img-top {
         width: 100%; /* Ensure the image takes up the full width of its container */
-        height: 100px; /* Set a fixed height for the image */
+        height: 150px; /* Set a fixed height for the image */
         object-fit: cover; /* Ensure the image covers the specified dimensions while maintaining its aspect ratio */
         }
  
@@ -216,11 +220,25 @@ body {
         }
 
 
+    /*Change the colour of the icons that scroll a carousel to make them darker and more visible */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(0%);
+    }
+
+
+
 
 /* Custom classes for WP editor */
 
     .rounded-image img {
         border-radius: 0.375rem !important; /* Bootstrap's rounded-3 equivalent */
+    }
+
+    .article-image img {
+        width: 95%;
+        display: block;
+        margin: 0 auto;
     }
 
     .rm-padding-left .wp-block-media-text__content {
@@ -231,11 +249,14 @@ body {
         padding-right: 0px !important;
     }
 
+
+
 /* makes all items in a column sticky - should be applied as additional class to column */
     .sticky-column {
         height: 100%;
         position: sticky;
         top: 76px; /*Navbar is  48px high with 8px padding. This leave 20px clearance*/
+        
     }
 
     .sticky-column > * {
